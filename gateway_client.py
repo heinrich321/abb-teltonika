@@ -98,9 +98,10 @@ cookie = 1
 device_id = 0x01
 slave_address = 0x01
 timeout = 1 #seconds
+read_frequency = 10
 
 while True:
-    time.sleep(10)
+    time.sleep(read_frequency)
 
     param_list = list(M4M_30_REG_MAP.keys())
     for param in param_list:

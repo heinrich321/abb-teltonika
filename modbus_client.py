@@ -59,7 +59,7 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    # print(msg.topic+" "+str(msg.payload))
     payload = json.loads(str(msg.payload, encoding='utf-8'))['Modbus']
     parameter = find_parameter_by_address(payload['addr'] - 1)
     if parameter != None:
