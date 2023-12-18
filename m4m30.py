@@ -369,9 +369,23 @@ def find_parameter_by_address(address):
     return None
 
 
+def uint16_array_to_int(arr, parameter):
+    cfg = M4M_30_REG_MAP[parameter]
+    signed = False
+    if cfg['data_type'] == 'signed':
+        signed = True
+    bytes = bytearray()
+    for reg in arr:
+        bytes = bytes + reg.to_bytes(2, 'big')
+    val = int.from_bytes(bytes, byteorder='big', signed=signed)
+    return val
 
-def decode_hex_str(hex_string, parameter):
+def hex_string_to_int(hex_string, parameter):
+    cfg = M4M_30_REG_MAP[parameter]
     byte_arr = bytes.fromhex(hex_string)
-    non_scaled_value = int.from_bytes(byte_arr, byteorder='big')
-    value = round(non_scaled_value * M4M_30_REG_MAP[parameter]['resolution'], 2)
-    return value, M4M_30_REG_MAP[parameter]['units']
+    signed = False
+    if cfg['data_type'] == 'signed':
+        signed = True
+    non_scaled_value = int.from_bytes(byte_arr, byteorder='big', signed=signed)
+    value = round(non_scaled_value * cfg['resolution'], 2)
+    return value, cfg['units']
