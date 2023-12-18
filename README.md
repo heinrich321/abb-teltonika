@@ -1,5 +1,12 @@
 # ABB <---> Teltonika
 
+## Overview
+
+- The integration guide is M4M Teltonika Integration.docx.pdf
+- Relevant ABB M4M30 meter information such as register maps and configuration examples are in the ABB/ folder
+- Teltonika config file examples for the different methods of communicating along with the TRB145 manual can be found under the teltonika_config/ folder.
+- m4m30.py contains the register map configuration and decode utilities for the M4M30 meter used in this guide
+
 ## Requirements
 
 - Python 3
